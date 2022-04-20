@@ -4,49 +4,40 @@ using UnityEngine;
 
 public class playerMovement : MonoBehaviour
 {
+    public float speed=3;
+    public float gravity = -20f;
+
+    public float jumpSpeed = 15;
+
     private CharacterController controller;
-    public Transform groundCheck;
-    public float gorundDistance=0.4f;
-    public LayerMask groundMask;
-    private bool isGrounded;
 
-    public float speed = 12f;
+    private Vector3 moveVelocity;
 
-    private Vector3 velocity;
-    private float verticalVelocity;
-    private float jumpForce = 10.0f;
-    private float gravity = 14.0f;
+    private Vector3 turnVelocity;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         controller = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
     void Update()
-    {   
-        
-        print(controller.isGrounded);
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-        Vector3 move = transform.right*x+transform.forward *z;
-        controller.Move(move * speed * Time.deltaTime);
-        
-        //player jump
+    {
+        var x = Input.GetAxis("Horizontal");
+        var z = Input.GetAxis("Vertical");
         if (controller.isGrounded)
-        {   verticalVelocity = -gravity * Time.deltaTime;
-            if (Input.GetKeyDown(KeyCode.Space))
+        {
+            moveVelocity = transform.right*x*speed+transform.forward *z*speed;
+            //turnVelocity = transform.up * rotationSpeed * x;
+            if (Input.GetButtonDown("Jump"))
             {
-                verticalVelocity = jumpForce;
+                moveVelocity.y = jumpSpeed;
             }
         }
-        else
-        {
-            verticalVelocity -= gravity * Time.deltaTime;
-            
-        }
-        Vector3 moveVector = new Vector3(0,verticalVelocity,0);
-        controller.Move(moveVector*Time.deltaTime);
-        //End of Player Jump
+
+        moveVelocity.y += gravity * Time.deltaTime;
+        controller.Move(moveVelocity*Time.deltaTime);
+        
+
     }
 }
