@@ -5,13 +5,17 @@ using System.Threading;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class playerMovement : MonoBehaviour
-{   public TextMeshProUGUI timerText;
-    public TextMeshProUGUI PlayerHealth;
-    private float timeValue = 69;//Left Time
-    
-    public float speed=3;
+{
+    public TextMeshProUGUI timerText;
+    public Slider PlayerHealth;
+    private Boolean levelOver = false;
+    private int MAX_HEALTH = 3;
+    private float timeValue = 180; //Left Time
+
+    public float speed = 3;
     public float gravity = -20f;
 
     public float jumpSpeed = 15;
@@ -22,15 +26,17 @@ public class playerMovement : MonoBehaviour
 
     private Vector3 turnVelocity;
     // Start is called before the first frame update
-    
+
     void Start()
-    {controller = GetComponent<CharacterController>();
-        
+    {
+        controller = GetComponent<CharacterController>();
+        PlayerHealth.value = MAX_HEALTH;
     }
 
     // Update is called once per frame
     void Update()
-    {   //to not print time in minus 
+    {
+        //to not print time in minus 
         if (timeValue > 0)
         {
             timeValue -= Time.deltaTime;
@@ -39,13 +45,21 @@ public class playerMovement : MonoBehaviour
         {
             timeValue = 0;
         }
+
         DisplayTime(timeValue);
-        
+        if (timeValue == 0 && !PuaseMenu.GameIsPaused)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            SceneManager.LoadScene(5);
+
+        }
+
         var x = Input.GetAxis("Horizontal");
         var z = Input.GetAxis("Vertical");
         if (controller.isGrounded)
         {
-            moveVelocity = transform.right*x*speed+transform.forward *z*speed;
+            moveVelocity = transform.right * x * speed + transform.forward * z * speed;
             //turnVelocity = transform.up * rotationSpeed * x;
             if (Input.GetButtonDown("Jump"))
             {
@@ -54,8 +68,8 @@ public class playerMovement : MonoBehaviour
         }
 
         moveVelocity.y += gravity * Time.deltaTime;
-        controller.Move(moveVelocity*Time.deltaTime);
-        
+        controller.Move(moveVelocity * Time.deltaTime);
+
 
     }
 
@@ -70,18 +84,21 @@ public class playerMovement : MonoBehaviour
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
         if (minutes < 1)
         {
-            timerText.color=Color.red;
-            
+            timerText.color = Color.red;
+
         }
-        timerText.text = string.Format("Time:{0:00}:{1:00}", minutes, seconds);
+
+        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
 
     }
 
     void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
         {
-            if(collision.gameObject.tag=="Enemy")
-                Debug.Log(collision.gameObject.name);
-                Destroy(collision.gameObject);
-    
+            Debug.Log(collision.gameObject.name);
+            PlayerHealth.value -= 1;
+            // Destroy(collision.gameObjec
         }
     }
+}
