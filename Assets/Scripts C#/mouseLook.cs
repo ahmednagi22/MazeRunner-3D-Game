@@ -28,7 +28,6 @@ public class mouseLook : MonoBehaviour
             xRotation = Mathf.Clamp(xRotation, -90f, 90f);
             transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
             playerBody.Rotate(Vector3.up * mouseX);
-            Debug.Log("colsion");
             Cursor.lockState = CursorLockMode.Locked;
         }
         else

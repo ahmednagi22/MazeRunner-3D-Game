@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4465785, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.574817, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3410,6 +3410,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b7a6e1355e03714fa2178bc68401e7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timerText: {fileID: 1395346358}
+  PlayerHealth: {fileID: 1395346357}
   speed: 12
   gravity: -20
   jumpSpeed: 15
@@ -4868,6 +4870,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1505182459228523200, guid: a6a1004c689b5aa45a8e8452aaa6bf32,
+        type: 3}
+      propertyPath: m_text
+      value: 'Time: 00:00'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1505182459228523202, guid: a6a1004c689b5aa45a8e8452aaa6bf32,
+        type: 3}
+      propertyPath: m_Name
+      value: Time
+      objectReference: {fileID: 0}
     - target: {fileID: 3732694510465911082, guid: a6a1004c689b5aa45a8e8452aaa6bf32,
         type: 3}
       propertyPath: m_Name
@@ -4911,6 +4923,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   optionMenu: {fileID: 1865572833}
   PauseMenuUI: {fileID: 1801779892}
+--- !u!114 &1395346357 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1505182459679149744, guid: a6a1004c689b5aa45a8e8452aaa6bf32,
+    type: 3}
+  m_PrefabInstance: {fileID: 1395346353}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1395346358 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1505182459228523200, guid: a6a1004c689b5aa45a8e8452aaa6bf32,
+    type: 3}
+  m_PrefabInstance: {fileID: 1395346353}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1403494953 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 11632799030996166, guid: 75fc75fbcf744094db915263b630852d,
