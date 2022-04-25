@@ -7,9 +7,9 @@ using UnityEngine;
 using UnityEngine.AI;
 public class EnemyMovement : MonoBehaviour
 {
-    private float WalkRaduis = 40f;
-    private float RunRaduis = 30f;
-    private float AttackRaduis = 9f;
+    private int WalkRaduis = 50;
+    private int RunRaduis = 40;
+    private int AttackRaduis = 15;
     private float lookRaduis = 20;
     
     public Transform target;
@@ -18,44 +18,41 @@ public class EnemyMovement : MonoBehaviour
     void Start()
     {   
         agent = GetComponent<NavMeshAgent>();
-        
+        int distance =(int)Vector3.Distance(target.position, transform.position);
     }
 
     
     void Update()
     {
-       float distance =Vector3.Distance(target.position, transform.position);
+       int distance =(int)Vector3.Distance(target.position, transform.position);
+       
        Debug.Log(distance);
         if (distance <= WalkRaduis)
-       {   animator.SetBool("WalkAnimation",true);
+       {   animator.SetFloat("animationParameter",0.33f);
            agent.SetDestination(target.position);
-            
+           Debug.Log("walk");
        }
-       else if (distance <= RunRaduis)
+        if (distance <= RunRaduis)
        {   
-           animator.SetBool("RunAnimation",true);
+           animator.SetFloat("animationParameter",0.66f);
            agent.SetDestination(target.position);
-           
+           Debug.Log("run");
            
         }
        
-       else if(distance <= AttackRaduis)
-       {  
-           animator.SetBool("AttackAnimation",true);
+       if(distance <= AttackRaduis)
+       {  Debug.Log("attack");
+           animator.SetFloat("animationParameter",1f);
            agent.SetDestination(target.position);
        }
-        else if(distance>=41f)
-        {
-            animator.SetBool("IdealAnimation",true);
-           // agent.SetDestination();
+       if(distance>50)
+        {   Debug.Log("ideal");
+            animator.SetFloat("animationParameter",0f);
+            agent.SetDestination(transform.position);
         }
     }
 
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color=Color.red;
-        Gizmos.DrawWireSphere(transform.position,lookRaduis);
-    }
+    
     void OnCollisionEnter(Collision collision)
     {
         //Check for a match with the specified name on any GameObject that collides with your GameObject
