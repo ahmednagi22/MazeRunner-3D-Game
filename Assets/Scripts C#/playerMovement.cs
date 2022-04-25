@@ -12,7 +12,7 @@ public class playerMovement : MonoBehaviour
     public TextMeshProUGUI timerText;
     public Slider PlayerHealth;
     private Boolean levelOver = false;
-    private int MAX_HEALTH = 3;
+    private int MAX_HEALTH = 10;
     private float timeValue = 180; //Left Time
 
     public float speed = 3;
@@ -47,7 +47,7 @@ public class playerMovement : MonoBehaviour
         }
 
         DisplayTime(timeValue);
-        if (timeValue == 0 && !PuaseMenu.GameIsPaused)
+        if (timeValue == 0 && !PuaseMenu.GameIsPaused ||PlayerHealth.value==0)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
@@ -92,7 +92,7 @@ public class playerMovement : MonoBehaviour
 
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.tag == "Enemy")
         {
