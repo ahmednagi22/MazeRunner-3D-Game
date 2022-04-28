@@ -26,27 +26,27 @@ public class EnemyMovement : MonoBehaviour
     {
        int distance =(int)Vector3.Distance(target.position, transform.position);
        
-       Debug.Log(distance);
+      // Debug.Log(distance);
         if (distance <= WalkRaduis)
        {   animator.SetFloat("animationParameter",0.33f);
            agent.SetDestination(target.position);
-           Debug.Log("walk");
+           //Debug.Log("walk");
        }
         if (distance <= RunRaduis)
        {   
            animator.SetFloat("animationParameter",0.66f);
            agent.SetDestination(target.position);
-           Debug.Log("run");
+           //Debug.Log("run");
            
         }
        
        if(distance <= AttackRaduis)
-       {  Debug.Log("attack");
+       {  //Debug.Log("attack");
            animator.SetFloat("animationParameter",1f);
            agent.SetDestination(target.position);
        }
        if(distance>50)
-        {   Debug.Log("ideal");
+        {   //Debug.Log("ideal");
             animator.SetFloat("animationParameter",0f);
             agent.SetDestination(transform.position);
         }

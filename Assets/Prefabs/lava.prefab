@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8609478754207717770}
   m_Layer: 0
   m_Name: lava
-  m_TagString: Untagged
+  m_TagString: lava
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,6 +107,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Safe ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 2592953775696282734, guid: 7b102f7530b1cc34a8ce23c5ef2b5c7c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4064722929598124263, guid: 7b102f7530b1cc34a8ce23c5ef2b5c7c,
         type: 3}

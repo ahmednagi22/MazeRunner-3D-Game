@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemy
   - MazeGeo
+  - lava
+  - winingGate
   layers:
   - Default
   - TransparentFX

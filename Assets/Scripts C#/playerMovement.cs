@@ -100,5 +100,21 @@ public class playerMovement : MonoBehaviour
             PlayerHealth.value -= 1;
             // Destroy(collision.gameObjec
         }
+        if (collision.gameObject.tag == "winingGate")
+        {
+            if (SceneManager.GetActiveScene().buildIndex == 3)
+            {
+                SceneManager.LoadScene(6);
+            }
+
+            int x=SceneManager.GetActiveScene().buildIndex;
+            SceneManager.LoadScene(x+1);
+        }
+        
+            Debug.Log(collision.gameObject.name);
+           // PlayerHealth.value -= 1;
+            // Destroy(collision.gameObjec
+        
     }
+    
 }
