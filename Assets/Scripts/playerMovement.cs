@@ -12,7 +12,7 @@ public class playerMovement : MonoBehaviour
     public TextMeshProUGUI timerText;
     public Slider PlayerHealth;
     private Boolean levelOver = false;
-    private int MAX_HEALTH = 10;
+    private int MAX_HEALTH = 1000;
     private float timeValue = 180; //Left Time
 
     public float speed = 3;
@@ -26,6 +26,7 @@ public class playerMovement : MonoBehaviour
 
     private Vector3 turnVelocity;
     // Start is called before the first frame update
+    public AudioSource dieSound;
 
     void Start()
     {
@@ -96,8 +97,11 @@ public class playerMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
+            
             Debug.Log(collision.gameObject.name);
-            PlayerHealth.value -= 1;
+            
+            PlayerHealth.value -= 3;
+            
             // Destroy(collision.gameObjec
         }
         if (collision.gameObject.tag == "winingGate")
