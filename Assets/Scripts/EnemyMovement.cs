@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
-using UnityEditor.AI;
-using UnityEditor.Animations;
+//using UnityEditor.AI;
+//using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.AI;
 public class EnemyMovement : MonoBehaviour

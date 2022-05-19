@@ -12,9 +12,9 @@ public class playerMovement : MonoBehaviour
     public TextMeshProUGUI timerText;
     public Slider PlayerHealth;
     private Boolean levelOver = false;
-    private int MAX_HEALTH = 1000;
-    private float timeValue = 180; //Left Time
-
+    public int MAX_HEALTH = 1000;
+    public float timeValue = 180; //Left Time
+    public int enemyDamage = 3; 
     public float speed = 3;
     public float gravity = -20f;
 
@@ -36,7 +36,33 @@ public class playerMovement : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   if(Input.GetKey(KeyCode.Alpha1))
+        {
+            //  print("DownArrow key was pressed");
+
+            SceneManager.LoadScene(1);
+        }
+        else if(Input.GetKey(KeyCode.Alpha2))
+        {
+            // print("UpArrow key was pressed");
+
+            SceneManager.LoadScene(2);
+        }
+        else if(Input.GetKey(KeyCode.Alpha3))
+        {
+            // print("RightArrow key was pressed");
+
+            SceneManager.LoadScene(3);
+        }
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            speed = 40;
+        }
+        else
+        {
+            speed = 20;
+        }
         //to not print time in minus 
         if (timeValue > 0)
         {
@@ -100,7 +126,7 @@ public class playerMovement : MonoBehaviour
             
             Debug.Log(collision.gameObject.name);
             
-            PlayerHealth.value -= 3;
+            PlayerHealth.value -= enemyDamage;
             
             // Destroy(collision.gameObjec
         }

@@ -10,7 +10,12 @@ public class mainmenu : MonoBehaviour
     
     // Start is called before the first frame update
     public float volume;
-    
+
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.None;
+
+    }
     public void PlayGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
